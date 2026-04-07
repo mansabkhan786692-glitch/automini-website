@@ -1,113 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AutoMini</title>
-
 <style>
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: #000;
 }
 
+/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
-  background: white;
+  padding: 20px 60px;
   position: sticky;
   top: 0;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
 }
 
 .navbar a {
-  margin: 0 10px;
+  margin: 0 15px;
   text-decoration: none;
-  color: black;
+  color: #000;
+  font-weight: 500;
 }
 
+/* Hero */
 .hero {
   text-align: center;
-  padding: 100px 20px;
+  padding: 140px 20px;
   background: #f5f5f7;
 }
 
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: #555;
+}
+
+.hero button {
+  padding: 12px 28px;
+  border: none;
+  background: #0071e3;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Products */
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  padding: 40px;
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  padding: 80px;
+  gap: 30px;
 }
 
 .card {
   background: #f5f5f7;
-  padding: 15px;
-  border-radius: 15px;
+  padding: 20px;
+  border-radius: 20px;
   text-align: center;
-  transition: 0.3s;
+  transition: 0.4s;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 15px;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
 }
 
+/* Sections */
 .section {
-  padding: 100px 20px;
+  padding: 120px 20px;
   text-align: center;
 }
 
-html {
-  scroll-behavior: smooth;
+.section h1 {
+  font-size: 2.5rem;
+}
+
+.section p {
+  color: #555;
+  max-width: 600px;
+  margin: auto;
 }
 </style>
-</head>
-
-<body>
-
-<header class="navbar">
-  <h2>AutoMini</h2>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#products">Products</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<section id="home" class="hero">
-  <h1>Precision in Every Detail.</h1>
-  <p>Premium collectible car models</p>
-  <button onclick="scrollToProducts()">Explore Collection</button>
-</section>
-
-<section id="products" class="products">
-  <div class="card">
-    <h3>Ferrari Model</h3>
-    <p>₹2,999</p>
-  </div>
-  <div class="card">
-    <h3>Lamborghini Model</h3>
-    <p>₹3,499</p>
-  </div>
-</section>
-
-<section id="about" class="section">
-  <h1>About</h1>
-  <p>We bring automotive excellence into miniature form.</p>
-</section>
-
-<section id="contact" class="section">
-  <h1>Contact</h1>
-  <p>Email: automini@email.com</p>
-</section>
-
 <script>
-function scrollToProducts() {
-  document.getElementById("products").scrollIntoView({
-    behavior: "smooth"
-  });
-}
-</script>
+const elements = document.querySelectorAll(".card, .section");
 
-</body>
-</html>
+window.addEventListener("scroll", () => {
+  elements.forEach(el => {
+    const position = el.getBoundingClientRect().top;
+    const screenHeight = window.innerHeight;
+
+    if (position < screenHeight - 100) {
+      el.style.opacity = 1;
+      el.style.transform = "translateY(0)";
+    }
+  });
+});
+
+elements.forEach(el => {
+  el.style.opacity = 0;
+  el.style.transform = "translateY(40px)";
+  el.style.transition = "0.6s";
+});
+</script>
